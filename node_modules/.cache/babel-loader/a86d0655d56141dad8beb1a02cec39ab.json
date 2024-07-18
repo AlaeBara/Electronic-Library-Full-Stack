@@ -1,1 +1,0 @@
-{"ast":null,"code":"import ownerDocument from './ownerDocument';\n/**\n * Returns the owner window of a given element.\n * \n * @param node the element\n */\n\nexport default function ownerWindow(node) {\n  var doc = ownerDocument(node);\n  return doc && doc.defaultView || window;\n}","map":null,"metadata":{},"sourceType":"module"}
