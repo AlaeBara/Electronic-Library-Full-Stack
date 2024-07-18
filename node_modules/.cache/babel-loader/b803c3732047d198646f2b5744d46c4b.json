@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function getUAString() {\n  var uaData = navigator.userAgentData;\n  if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {\n    return uaData.brands.map(function (item) {\n      return item.brand + \"/\" + item.version;\n    }).join(' ');\n  }\n  return navigator.userAgent;\n}","map":null,"metadata":{},"sourceType":"module"}

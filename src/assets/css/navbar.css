@@ -1,0 +1,126 @@
+/* Navbar background color and padding */
+.navbar-custom {
+    background-color: #ffffff;
+    padding: 10px 0;
+    box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+}
+
+.logina {
+    border: 1px solid #2B3A42;
+    background-color: #2B3A42;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* Navbar brand styles */
+.navbar-brand-custom {
+    color: #BF4F36 !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+.navbar-brand-custom:hover {
+    color: #BF4F36;
+    opacity: 0.8;
+}
+
+/* Navbar links styles */
+.navbar-link-custom {
+    color: #000000;
+    text-decoration: none !important;
+    margin-right: 15px;
+}
+
+.navbar-link-custom:hover {
+    color: #E74C3C;
+    opacity: 0.8;
+}
+
+.navbar-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-form {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin: 0;
+}
+
+.search-input {
+    height: 44px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    width: 70%;
+}
+
+.search-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 30%;
+}
+
+.search-button:hover {
+    background-color: #f01800;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    margin-left: 10px;
+}
+
+@media (max-width: 991px) {
+    .navbar-custom .container-fluid {
+        padding: 0 15px;
+    }
+
+    .navbar-collapse {
+        background-color: #ffffff;
+        padding: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .navbar-link-custom {
+        margin: 5px 0;
+    }
+
+    .logina {
+        margin-top: 10px;
+        padding: 8px 15px !important;
+    }
+
+    .search-form {
+        margin: 15px 0;
+    }
+
+    .search-input, .search-button {
+        font-size: 14px;
+    }
+
+    .navbar-logo {
+        height: 30px;
+    }
+}
+/* styles.css */
+@media (min-width: 768px) {
+    .lmochkila {
+      margin-left: 200px;
+    }
+  }

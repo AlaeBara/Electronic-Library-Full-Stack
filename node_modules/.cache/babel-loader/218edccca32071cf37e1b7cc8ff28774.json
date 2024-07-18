@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\n/** @type {import('./type')} */\nmodule.exports = TypeError;","map":null,"metadata":{},"sourceType":"script"}
