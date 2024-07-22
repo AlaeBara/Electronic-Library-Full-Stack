@@ -135,6 +135,14 @@ form.sign-in-form {
   border-color: #4481eb;
 }
 
+.message {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: #E74C3C;
+  text-align: center;
+}
+
 .btn {
   width: 150px;
   background-color: #2B3A42;

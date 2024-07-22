@@ -21,7 +21,7 @@ const AuthContainer = () => {
       <div className={styles['forms-container']}>
         <div className={styles['signin-signup']}>
           <SignInForm />
-          <SignUpForm />
+          <SignUpForm onSignUpSuccess={handleSignInClick} />
         </div>
       </div>
       <div className={styles['panels-container']}>
