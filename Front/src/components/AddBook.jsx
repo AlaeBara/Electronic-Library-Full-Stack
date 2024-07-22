@@ -23,29 +23,29 @@ const AddBook = () => {
         title: bookName,
         author: bookAuthor,
         description: bookDescription,
-        cover: bookImage, // This will just be the URL string now
-        id: Date.now() // Generate a unique ID
+        cover: bookImage,
+        category: category
       };
-
-      const response = await fetch(`http://localhost:8000/${category}`, {
+  
+      const response = await fetch(`http://localhost:5000/api/${category}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newBook),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to add book");
       }
-
+  
       // Clear form after successful submission
       setBookImage("");
       setBookName("");
       setBookAuthor("");
       setBookDescription("");
       setCategory("");
-
+  
       alert("Book added successfully!");
     } catch (error) {
       console.error("Error adding book:", error);
