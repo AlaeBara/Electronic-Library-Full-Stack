@@ -11,7 +11,8 @@ const Profile = () => {
       username: '',
       phone: '',
       address: '',
-      country: ''
+      country: '',
+      profileImage: ''
     });
 
     useEffect(() => {
@@ -25,7 +26,8 @@ const Profile = () => {
                     username: response.data.username,
                     phone: response.data.phone,
                     address: response.data.address,
-                    country: response.data.country
+                    country: response.data.country,
+                    profileImage: response.data.profileImage || ''
                 });
                 setLoading(false);
             } catch (err) {
@@ -54,6 +56,20 @@ const Profile = () => {
         }
     };
 
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'y1f5bwss');
+
+        try {
+            const res = await axios.post('https://api.cloudinary.com/v1_1/djux9krem/image/upload', formData);
+            setFormData(prevState => ({ ...prevState, profileImage: res.data.secure_url }));
+        } catch (err) {
+            console.error('Error uploading image: ', err);
+        }
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
     if (!profileData) return <div>No profile data available</div>;
@@ -65,8 +81,13 @@ const Profile = () => {
               <Col lg={4}>
                 <Card className="mb-4">
                   <Card.Body className="text-center">
-                    <img src="https://via.placeholder.com/150" alt="avatar"
+                    {profileData.profileImage ? (
+                      <img src={profileData.profileImage} alt="avatar"
                       className="rounded-circle img-fluid" style={{ width: '150px' }} />
+                    ) : (
+                      <img src="https://via.placeholder.com/150" alt="avatar"
+                        className="rounded-circle img-fluid" style={{ width: '150px' }} />
+                    )}
                     <h5 className="my-3">{profileData.username}</h5>
                     <p className="text-muted mb-1">User</p>
                     <p className="text-muted mb-4">{profileData.country}</p>
@@ -87,6 +108,15 @@ const Profile = () => {
                   <Card className="mb-4">
                     <Card.Body>
                       <Form onSubmit={handleSubmit}>
+                        <Form.Group as={Row} className="mb-3">
+                          <Form.Label column sm={3}>Profile Image</Form.Label>
+                          <Col sm={9}>
+                            <Form.Control
+                              type="file"
+                              onChange={handleImageUpload}
+                            />
+                          </Col>
+                        </Form.Group>
                         <Form.Group as={Row} className="mb-3">
                           <Form.Label column sm={3}>Username</Form.Label>
                           <Col sm={9}>
