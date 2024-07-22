@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import BookCard from './BookCard';
 
-const categoryNames = [
-  "Adventure", "Romance", "Thriller", "Memoir", 
-  "Travel", "Health", "Poetry", "Cooking"
-];
-
 const BooksPage = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,20 +10,12 @@ const BooksPage = () => {
   useEffect(() => {
     const fetchAllBooks = async () => {
       try {
-        const fetchPromises = categoryNames.map(category => 
-          fetch(`http://localhost:8000/${category}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-              }
-              return response.json();
-            })
-            .then(data => data.map(book => ({ ...book, category })))
-        );
-
-        const results = await Promise.all(fetchPromises);
-        const allBooks = results.flat();
-        setBooks(allBooks);
+        const response = await fetch('http://localhost:5000/api/books');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setBooks(data);
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch books:", error);
@@ -55,7 +42,7 @@ const BooksPage = () => {
       </h1>
       <Row xs={1} sm={2} md={3} lg={4} xl={6} className="g-4 mx-5">
         {books.map((book) => (
-          <Col key={`${book.category}-${book.id}`}>
+          <Col key={book._id}>
             <BookCard category={book.category} book={book} />
           </Col>
         ))}
