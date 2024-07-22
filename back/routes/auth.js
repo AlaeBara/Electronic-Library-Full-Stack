@@ -3,6 +3,24 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const router = express.Router();
+const cloudinary = require('cloudinary').v2;
+
+
+cloudinary.config({ 
+    cloud_name: 'djux9krem', 
+    api_key: '639144162891629', 
+    api_secret: 'cqldqET6lDIs4iM9WAkf5DV4Adg' 
+  });
+  
+  router.get('/signature', (req, res) => {
+    const timestamp = Math.round((new Date).getTime()/1000);
+    const signature = cloudinary.utils.api_sign_request({
+      timestamp: timestamp,
+      folder: 'user_uploads'
+    }, cloudinary.config().api_secret);
+    res.json({ timestamp, signature });
+  });
+
 
 router.post('/signup', async (req, res) => {
     const { username, phone, address, country, email, password } = req.body;
@@ -76,7 +94,7 @@ try {
 });
 
 router.put('/profile', authMiddleware, async (req, res) => {
-const { username, phone, address, country } = req.body;
+const { username, phone, address, country, profileImage } = req.body;
 
 try {
     let user = await User.findById(req.user.id);
@@ -88,6 +106,7 @@ try {
     user.phone = phone || user.phone;
     user.address = address || user.address;
     user.country = country || user.country;
+    user.profileImage = profileImage || user.profileImage;
 
     await user.save();
     res.json(user);
