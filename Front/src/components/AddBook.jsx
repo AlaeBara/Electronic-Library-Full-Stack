@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import '../assets/css/addbook.css';
-
+import axios from 'axios';
 
 const categoryNames = [
   "Adventure", "Romance", "Thriller", "Memoir", 
@@ -9,11 +9,25 @@ const categoryNames = [
 ];
 
 const AddBook = () => {
-  const [bookImage, setBookImage] = useState("");
+  const [bookImage, setBookImage] = useState(null);
   const [bookName, setBookName] = useState("");
   const [bookAuthor, setBookAuthor] = useState("");
   const [bookDescription, setBookDescription] = useState("");
   const [category, setCategory] = useState("");
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'y1f5bwss');
+
+    try {
+      const res = await axios.post('https://api.cloudinary.com/v1_1/djux9krem/image/upload', formData);
+      setBookImage(res.data.secure_url);
+    } catch (err) {
+      console.error('Error uploading image: ', err);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +54,7 @@ const AddBook = () => {
       }
   
       // Clear form after successful submission
-      setBookImage("");
+      setBookImage(null);
       setBookName("");
       setBookAuthor("");
       setBookDescription("");
@@ -60,13 +74,14 @@ const AddBook = () => {
         <Form.Group className="mb-3" controlId="formBookImage">
           <Form.Label>Book Cover</Form.Label>
           <Form.Control 
-            type="text" 
-            placeholder="Enter image URL"
-            value={bookImage}
-            onChange={(e) => setBookImage(e.target.value)} 
+            type="file" 
+            onChange={handleImageUpload} 
             required
           />
         </Form.Group>
+        {bookImage && (
+          <img src={bookImage} alt="Book cover preview" style={{ width: '100%', marginBottom: '15px' }} />
+        )}
         <Form.Group className="mb-3" controlId="formBookName">
           <Form.Label>Book Name</Form.Label>
           <Form.Control 
@@ -92,7 +107,7 @@ const AddBook = () => {
           <Form.Control 
             as="textarea" 
             rows={3} 
-            placeholder="Write descreption Description" 
+            placeholder="Write book description" 
             value={bookDescription}
             onChange={(e) => setBookDescription(e.target.value)} 
             required 
