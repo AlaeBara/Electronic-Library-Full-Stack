@@ -5,7 +5,7 @@ import { AuthContext } from './AuthContext';
 const ProtectedRoute = ({ children }) => {
   const { isLoggedIn } = useContext(AuthContext);
 
-  if (!isLoggedIn) {
+  if (!localStorage.getItem('token')) {
     return <Navigate to="/login" replace />;
   }
 
