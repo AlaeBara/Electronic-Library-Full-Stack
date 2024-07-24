@@ -5,6 +5,7 @@
 #### Auth
 - `POST /auth/signup`: Register a new user
 - `POST /auth/singin`: Login a user
+- `POST /auth/logout`: Logout
 
 
 ### Book Management

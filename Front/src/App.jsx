@@ -13,7 +13,8 @@ import AboutUs from './components/AboutUS'
 import Favorites from './components/favorites'
 import Profile from './components/Profile'
 import Sign from './components/Sign/Sign'
-
+import ProtectedRoute from './ProtectedRoute';
+import { AuthProvider } from './AuthContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,16 +25,21 @@ const router = createBrowserRouter(
     <Route path='*' element={<NotFound />} />
     <Route path="/allbooks/:categoryName" element={<CategoryBooks />} />
     <Route path="/search" element={<SearchResults />} />
-    <Route path='/addbook' element={<AddBook />} />
+    <Route path='/addbook' element={<ProtectedRoute><AddBook /></ProtectedRoute>} />
     <Route path='/aboutus' element={<AboutUs />} />
-    <Route path="/favorites" element={<Favorites />} />
-    <Route path="/profile" element={<Profile />} />
+    <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
+    <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
     <Route path='/login' element={<Sign />} />
   </Route>
   )
 );
 
 const App = () => {
-  return <RouterProvider router={router}/>;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router}/>
+    </AuthProvider>
+  );
 };
+
 export default App;
