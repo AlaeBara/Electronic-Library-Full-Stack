@@ -59,7 +59,7 @@ router.post('/signin', async (req, res) => {
 
         res.cookie('token', token, { httpOnly: true });
 
-        res.status(200).json({ message: 'User signed in successfully' });
+        res.status(200).json({ message: 'User signed in successfully' ,token:token});
     } catch (error) {
         console.error('Signin error:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
