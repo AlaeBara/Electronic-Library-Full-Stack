@@ -23,7 +23,7 @@ cloudinary.config({
 
 
 router.post('/signup', async (req, res) => {
-    const { username, phone, address, country, email, password } = req.body;
+    const { username, email, password } = req.body;
 
     try {
         const existingUser = await User.findOne({ email });
@@ -32,7 +32,7 @@ router.post('/signup', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ username, phone, address, country, email, password: hashedPassword });
+        const newUser = new User({ username:username,  email:email, password: hashedPassword });
         await newUser.save();
 
         res.status(201).json({ message: 'User created successfully' });

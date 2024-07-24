@@ -7,9 +7,6 @@ import axios from 'axios';
 const SignUpForm = ({onSignUpSuccess}) => {
   const [formData, setFormData] = useState({
     username: '',
-    phone: '',
-    address: '',
-    country: '',
     email: '',
     password: ''
   });
@@ -28,9 +25,6 @@ const SignUpForm = ({onSignUpSuccess}) => {
       onSignUpSuccess();
       setFormData({
         username: '',
-        phone: '',
-        address: '',
-        country: '',
         email: '',
         password: ''
       });
@@ -59,49 +53,7 @@ const SignUpForm = ({onSignUpSuccess}) => {
         />
       </div>
 
-      <div className={styles['input-field']}>
-        <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
-        </div>
-        <input 
-          type="tel" 
-          name="phone" 
-          placeholder="Phone" 
-          pattern="[0-9]{3}[0-9]{3}[0-9]{4}" 
-          required 
-          onChange={handleChange}
-          value={formData.phone}
-        />
-      </div>
-
-      <div className={styles['input-field']}>
-        <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
-        </div>
-        <input 
-          type="text" 
-          name="address" 
-          placeholder="Address" 
-          required
-          onChange={handleChange}
-          value={formData.address}
-        />
-      </div>
-
-      <div className={styles['input-field']}>
-        <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
-        </div>
-        <input 
-          type="text" 
-          name="country" 
-          placeholder="Country" 
-          required
-          onChange={handleChange}
-          value={formData.country}
-        />
-      </div>
-
+    
       <div className={styles['input-field']}>
         <div className={styles['ccc']}>
           <FontAwesomeIcon icon={faTwitter} />
