@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card, Modal } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
 
 const OneBook = () => {
   const { category, bookId } = useParams();
+  const navigate = useNavigate();
   const [isImageLarge, setIsImageLarge] = useState(false);
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-
   const addToFavorites = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (!favorites.some(fav => fav.id === book.id)) {
-      const bookWithCategory = { ...book, category };
-      favorites.push(bookWithCategory);
+    if (!favorites.some(fav => fav._id === book._id)) {
+      favorites.push(book);
       localStorage.setItem('favorites', JSON.stringify(favorites));
       alert('Book added to favorites!');
     } else {
@@ -27,17 +25,12 @@ const OneBook = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/${category}`);
+        const response = await fetch(`http://localhost:5000/api/categories/${category}/${bookId}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const foundBook = data.find(b => String(b.id) === String(bookId));
-        if (foundBook) {
-          setBook(foundBook);
-        } else {
-          setError('Book not found');
-        }
+        setBook(data);
       } catch (error) {
         console.error("Could not fetch book:", error);
         setError('Failed to load book. Please try again later.');
@@ -49,30 +42,23 @@ const OneBook = () => {
     fetchBook();
   }, [category, bookId]);
 
-
-
   const handleImageClick = () => {
     setIsImageLarge(!isImageLarge);
   };
 
-
-
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-
-
   const handleDeleteBook = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/${category}/${bookId}`, {
+      const response = await fetch(`http://localhost:5000/api/categories/${category}/${bookId}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
         throw new Error('Failed to delete book');
       }
-      // Handle successful deletion (e.g., redirect to book list)
       alert('Book deleted successfully');
-      // You might want to redirect the user or update the UI here
+      navigate(`/allbooks/${category}`);
     } catch (error) {
       console.error('Error deleting book:', error);
       alert('Failed to delete book. Please try again.');
@@ -121,7 +107,6 @@ const OneBook = () => {
         </Col>
       </Row>
 
-      {/* Delete Confirmation Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>

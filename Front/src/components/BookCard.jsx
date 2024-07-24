@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const BookCard = ({ category, book }) => {
+const BookCard = ({ book }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -25,7 +25,7 @@ const BookCard = ({ category, book }) => {
         <Card.Title className="font-weight-bold">{book.title}</Card.Title>
         <Card.Text className="text-muted mb-auto">Author: {book.author}</Card.Text>
         <Link
-          to={`/allbooks/${category}/${book.id}`}
+          to={`/allbooks/${book.category}/${book._id}`}
           className="btn btn-primary mt-3"
           style={{ backgroundColor: '#E74C3C', borderColor: '#E74C3C' }}
         >

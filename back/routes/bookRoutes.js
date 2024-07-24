@@ -12,12 +12,26 @@ router.get('/books', async (req, res) => {
   }
 });
 
+// Get a single book by category and id
+router.get('/categories/:category/:id', async (req, res) => {
+  try {
+    const book = await Book.findOne({ category: req.params.category, _id: req.params.id });
+    if (book) {
+      res.json(book);
+    } else {
+      res.status(404).json({ message: 'Book not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Get books by category
-router.get('/categories', async (req, res) => {
+router.get('/categories/:category', async (req, res) => {
   try {
     const books = await Book.find({ category: req.params.category });
     res.json(books);
-  } catch (err) {
+  } catch (err) { 
     res.status(500).json({ message: err.message });
   }
 });
@@ -41,7 +55,7 @@ router.post('/:category', async (req, res) => {
 });
 
 // Update a book
-router.patch('/:id', async (req, res) => {
+router.patch('/books/:id', async (req, res) => {
   try {
     const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updatedBook);
@@ -51,10 +65,14 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Delete a book
-router.delete('/:id', async (req, res) => {
+router.delete('/categories/:category/:id', async (req, res) => {
   try {
-    await Book.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Book deleted' });
+    const deletedBook = await Book.findOneAndDelete({ category: req.params.category, _id: req.params.id });
+    if (deletedBook) {
+      res.json({ message: 'Book deleted', book: deletedBook });
+    } else {
+      res.status(404).json({ message: 'Book not found' });
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import styles from '../Sign.module.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../../AuthContext';
 
 const SignInForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const SignInForm = () => {
   });
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +24,14 @@ const SignInForm = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signin', formData, { withCredentials: true });
       setMessage(response.data.message);
-      navigate("/profile")
+      
+      // Store the token in localStorage
+      localStorage.setItem('token', response.data.token);
+      
+      // Update the authentication context
+      setIsLoggedIn(true);
+
+      navigate("/profile");
     } catch (error) {
       setMessage(error.response?.data?.message || 'An error occurred during sign-in');
     }
