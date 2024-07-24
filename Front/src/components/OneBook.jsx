@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card, Modal } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 
+//this need to change ------- we need to remove the delete on the book page
+//and put it in the profile
+
 const OneBook = () => {
   const { category, bookId } = useParams();
   const navigate = useNavigate();
