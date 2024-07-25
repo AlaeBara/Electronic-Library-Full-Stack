@@ -1,6 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/Book');
+const jwt = require('jsonwebtoken');
+
+
+const authMiddleware = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(403).json({ msg: 'Token is not valid' });
+  }
+};
+
 
 // Get all books
 router.get('/books', async (req, res) => {
@@ -37,13 +53,14 @@ router.get('/categories/:category', async (req, res) => {
 });
 
 // Add a new book
-router.post('/:category', async (req, res) => {
+router.post('/:category', authMiddleware,async (req, res) => {
   const book = new Book({
+    id_client:req.user.id,
     title: req.body.title,
     author: req.body.author,
     description: req.body.description,
     cover: req.body.cover,
-    category: req.params.category
+    category: req.body.category
   });
 
   try {
