@@ -42,15 +42,7 @@ router.get('/categories/:category/:id', async (req, res) => {
   }
 });
 
-// Get books by category
-router.get('/categories/:category', async (req, res) => {
-  try {
-    const books = await Book.find({ category: req.params.category });
-    res.json(books);
-  } catch (err) { 
-    res.status(500).json({ message: err.message });
-  }
-});
+
 
 // Add a new book
 router.post('/:category', authMiddleware,async (req, res) => {
@@ -71,15 +63,7 @@ router.post('/:category', authMiddleware,async (req, res) => {
   }
 });
 
-// Update a book
-router.patch('/books/:id', async (req, res) => {
-  try {
-    const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedBook);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+
 
 // Delete a book
 router.delete('/categories/:category/:id', async (req, res) => {
