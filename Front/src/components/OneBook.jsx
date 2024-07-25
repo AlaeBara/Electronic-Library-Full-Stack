@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card, Modal } from 'react-bootstrap';
-import { useParams, useNavigate } from 'react-router-dom';
-
-//this need to change ------- we need to remove the delete on the book page
-//and put it in the profile
+import { useParams } from 'react-router-dom';
+import '../assets/css/bookbtn.css'
 
 const OneBook = () => {
   const { category, bookId } = useParams();
-  const navigate = useNavigate();
   const [isImageLarge, setIsImageLarge] = useState(false);
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,22 +49,6 @@ const OneBook = () => {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  const handleDeleteBook = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/categories/${category}/${bookId}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to delete book');
-      }
-      alert('Book deleted successfully');
-      navigate(`/allbooks/${category}`);
-    } catch (error) {
-      console.error('Error deleting book:', error);
-      alert('Failed to delete book. Please try again.');
-    }
-    handleCloseModal();
-  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -99,8 +80,8 @@ const OneBook = () => {
               />
             </div>
           </Card>
-          <Button variant="danger" className="my-3" style={{ width: '100%' }} onClick={handleShowModal}>Delete Book only admin</Button>
-          <Button variant="success" className="my-1" style={{ width: '100%' }} onClick={addToFavorites}>Add To Favorite</Button>
+          <Button className="my-3 read-book-btn" style={{ width: '100%' }} onClick={handleShowModal}>Read This Book</Button>
+          <Button className="my-1 add-to-favorites-btn" style={{ width: '100%' }} onClick={addToFavorites}>Add To Favorite</Button>
         </Col>
         <Col md={8}>
           <h1 className="mb-3" style={{ fontWeight: 'bold' }}>{book.title}</h1>
@@ -112,15 +93,15 @@ const OneBook = () => {
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <Modal.Title>salam 1</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete "{book.title}"?</Modal.Body>
+        <Modal.Body>salam salam"{book.title}"?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleDeleteBook}>
-            Delete
+          <Button variant="success">
+            Read Book
           </Button>
         </Modal.Footer>
       </Modal>
