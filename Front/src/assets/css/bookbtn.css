@@ -1,0 +1,26 @@
+.read-book-btn {
+    background-color: #dd411e;
+    border-color: #d34120;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+  
+.read-book-btn:hover {
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+}
+  
+  /* Add to Favorites Button */
+.add-to-favorites-btn {
+    background-color: #11b442;
+    border-color: #10d84c;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.read-book-btn:hover {
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+}
