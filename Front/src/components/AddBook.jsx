@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import '../assets/css/addbook.css';
 import axios from 'axios';
@@ -14,6 +14,7 @@ const AddBook = () => {
   const [bookAuthor, setBookAuthor] = useState("");
   const [bookDescription, setBookDescription] = useState("");
   const [category, setCategory] = useState("");
+  const fileInputRef = useRef(null); // Create a ref for the file input
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -47,8 +48,9 @@ const AddBook = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newBook),
+        credentials: "include" // This will include credentials in the request
       });
-  
+      
       if (!response.ok) {
         throw new Error("Failed to add book");
       }
@@ -59,6 +61,7 @@ const AddBook = () => {
       setBookAuthor("");
       setBookDescription("");
       setCategory("");
+      fileInputRef.current.value = null; // Clear the file input
   
       alert("Book added successfully!");
     } catch (error) {
@@ -77,6 +80,7 @@ const AddBook = () => {
           <Form.Control 
             type="file" 
             onChange={handleImageUpload} 
+            ref={fileInputRef} // Attach the ref to the file input
             required
           />
         </Form.Group>

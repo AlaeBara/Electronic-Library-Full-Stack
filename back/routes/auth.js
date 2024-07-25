@@ -78,7 +78,7 @@ const authMiddleware = (req, res, next) => {
     } catch (err) {
       res.status(401).json({ msg: 'Token is not valid' });
     }
-  };
+};
 
 router.get('/profile', authMiddleware, async (req, res) => {
 try {

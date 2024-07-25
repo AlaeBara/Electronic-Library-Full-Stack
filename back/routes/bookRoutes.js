@@ -1,6 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/Book');
+const jwt = require('jsonwebtoken');
+
+
+const authMiddleware = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(403).json({ msg: 'Token is not valid' });
+  }
+};
+
 
 // Get all books
 router.get('/books', async (req, res) => {
@@ -26,24 +42,17 @@ router.get('/categories/:category/:id', async (req, res) => {
   }
 });
 
-// Get books by category
-router.get('/categories/:category', async (req, res) => {
-  try {
-    const books = await Book.find({ category: req.params.category });
-    res.json(books);
-  } catch (err) { 
-    res.status(500).json({ message: err.message });
-  }
-});
+
 
 // Add a new book
-router.post('/:category', async (req, res) => {
+router.post('/:category', authMiddleware,async (req, res) => {
   const book = new Book({
+    id_client:req.user.id,
     title: req.body.title,
     author: req.body.author,
     description: req.body.description,
     cover: req.body.cover,
-    category: req.params.category
+    category: req.body.category
   });
 
   try {
@@ -54,15 +63,7 @@ router.post('/:category', async (req, res) => {
   }
 });
 
-// Update a book
-router.patch('/books/:id', async (req, res) => {
-  try {
-    const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updatedBook);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+
 
 // Delete a book
 router.delete('/categories/:category/:id', async (req, res) => {
