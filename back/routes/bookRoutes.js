@@ -79,4 +79,21 @@ router.delete('/categories/:category/:id', async (req, res) => {
   }
 });
 
+
+router.get('/search', async (req, res) => {
+  const { q } = req.query;
+  try {
+    const books = await Book.find({
+      $or: [
+        { title: { $regex: q, $options: 'i' } },
+        { author: { $regex: q, $options: 'i' } },
+        { description: { $regex: q, $options: 'i' } }
+      ]
+    });
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

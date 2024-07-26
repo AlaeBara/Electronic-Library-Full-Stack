@@ -1,0 +1,335 @@
+{
+  "Adventure": [
+    {
+      "id": 1,
+      "title": "Into Thin Air",
+      "author": "Jon Krakauer",
+      "cover": "https://paulinaontheroad.com/wp-content/uploads/2023/12/512t9z6JLLL._SL500_.jpg.webp",
+      "description": "A personal account of the 1996 Mount Everest disaster."
+    },
+    {
+      "id": 2,
+      "title": "Moby-Dick",
+      "author": "Herman Melville",
+      "cover": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSE9EdW4IsRCSJYyJxefVVsEaZb7CwX4HXVg4Rc28uv64vLhP26",
+      "description": "The saga of Captain Ahab and his relentless pursuit of Moby Dick, the great white whale."
+    },
+    {
+      "id": 3,
+      "title": "Into Thin Air",
+      "author": "Jon Krakauer",
+      "cover": "https://paulinaontheroad.com/wp-content/uploads/2023/12/512t9z6JLLL._SL500_.jpg.webp",
+      "description": "A personal account of the 1996 Mount Everest disaster."
+    },
+    {
+      "id": 4,
+      "title": "The Hobbit",
+      "author": "John Ronald Reuel Tolkien",
+      "cover": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRRxdD7tWquroN4RfhCCpDQeOD7q4DnTHqUpp8gdAW9hzhoSftn",
+      "description": "The prelude to the Lord of the Rings, following Bilbo Baggins' journey to the Lonely Mountain."
+    },
+    {
+      "id": 5,
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author": "J. K. Rowling",
+      "cover": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtFKRzqIPBTYkse7NKIPTjw0ggQB02c636StmC1mONyQwec4x1",
+      "description": "The first book in the Harry Potter series, introducing the young wizard Harry Potter."
+    },
+    {
+      "id": 6,
+      "title": "Treasure Island",
+      "author": "Robert Louis Stevenson",
+      "cover": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR_AqOfDPs9ufnpFhFmLzdHs-vGLnKta9W_L28oV-g0epU0MkYI",
+      "description": "The classic tale of piracy and adventure on the high seas."
+    }
+  ],
+  "Romance": [
+    {
+      "id": 1,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "cover": "https://m.media-amazon.com/images/I/81OthjkJBuL._AC_UY327_FMwebp_QL65_.jpg",
+      "description": "A romantic novel of manners that explores the issues of marriage, money, and love."
+    },
+    {
+      "id": 2,
+      "title": "The Notebook",
+      "author": "Nicholas Sparks",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d9/The_Notebook_Cover.jpg",
+      "description": "A poignant tale of enduring love and memory."
+    },
+    {
+      "id": 3,
+      "title": "Outlander",
+      "author": "Diana Gabaldon",
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659086907i/10964.jpg",
+      "description": "A historical romance blending time travel, adventure, and epic love."
+    },
+    {
+      "id": 4,
+      "title": "Me Before You",
+      "author": "Jojo Moyes",
+      "cover": "https://covers.storytel.com/jpg-640/9781471201097.2d657f53-80e8-4ad9-a96b-6f329af88021?quality=70",
+      "description": "A love story that explores the limits of a person's right to choose."
+    },
+    {
+      "id": 5,
+      "title": "Twilight",
+      "author": "Stephenie Meyer",
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1700522826i/41865.jpg",
+      "description": "The tale of a teenage girl's love for a vampire and the challenges they face."
+    },
+    {
+      "id": 6,
+      "title": "The Time Traveler's Wife",
+      "author": "Audrey Niffenegger",
+      "cover": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781476764832/the-time-travelers-wife-9781476764832_hr.jpg",
+      "description": "A unique love story about a man with a genetic disorder that causes him to time travel unpredictably."
+    }
+  ],
+  "Thriller": [
+    {
+      "id": 1,
+      "title": "The Girl with the Dragon Tattoo",
+      "author": "Stieg Larsson",
+      "cover": "https://m.media-amazon.com/images/I/61Qs-hoZ-TL._AC_UF1000,1000_QL80_.jpg",
+      "description": "A gripping thriller about a journalist and a hacker who team up to solve a decades-old disappearance."
+    },
+    {
+      "id": 2,
+      "title": "Gone Girl",
+      "author": "Gillian Flynn",
+      "cover": "https://cdn.waterstones.com/bookjackets/large/9780/7538/9780753827666.jpg",
+      "description": "A psychological thriller about a marriage gone wrong and the secrets each spouse hides."
+    },
+    {
+      "id": 3,
+      "title": "The Silent Patient",
+      "author": "Alex Michaelides",
+      "cover": "https://cdn.kobo.com/book-images/c0e785d2-826a-4a87-a262-076ca94813a2/353/569/90/False/the-silent-patient-2.jpg",
+      "description": "A psychological thriller about a woman who stops speaking after being accused of murdering her husband."
+    },
+    {
+      "id": 4,
+      "title": "The Da Vinci Code",
+      "author": "Dan Brown",
+      "cover": "https://m.media-amazon.com/images/I/811nqCf7o1L._AC_UF1000,1000_QL80_.jpg",
+      "description": "A fast-paced thriller that explores the secrets of the Catholic Church and hidden codes in famous artworks."
+    },
+    {
+      "id": 5,
+      "title": "The Girl on the Train",
+      "author": "Paula Hawkins",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/715uXU7CX3L.jpg?w=144",
+      "description": "A psychological thriller about a woman who believes she witnessed a crime from her train window."
+    },
+    {
+      "id": 6,
+      "title": "Big Little Lies",
+      "author": "Liane Moriarty",
+      "cover": "https://images.penguinrandomhouse.com/cover/9780425274866",
+      "description": "A suspenseful story about three women whose lives unravel to the point of murder."
+    }
+  ],
+  "Memoir": [
+    {
+      "id": 1,
+      "title": "Educated",
+      "author": "Tara Westover",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg",
+      "description": "A memoir about a woman who grows up in a strict and abusive household in rural Idaho but eventually escapes to learn about the wider world through education."
+    },
+    {
+      "id": 2,
+      "title": "Becoming",
+      "author": "Michelle Obama",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/81h2gWPTYJL.jpg",
+      "description": "The memoir of the former First Lady of the United States, chronicling her life from childhood to the White House."
+    },
+    {
+      "id": 3,
+      "title": "The Glass Castle",
+      "author": "Jeannette Walls",
+      "cover": "https://m.media-amazon.com/images/I/81wJn3SMKGL._AC_UF894,1000_QL80_.jpg",
+      "description": "A memoir of a dysfunctional family, focusing on the author's unconventional and often harsh upbringing."
+    },
+    {
+      "id": 4,
+      "title": "Wild",
+      "author": "Cheryl Strayed",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg",
+      "description": "A memoir about a woman who embarks on a journey of self-discovery by hiking the Pacific Crest Trail alone."
+    },
+    {
+      "id": 5,
+      "title": "When Breath Becomes Air",
+      "author": "Paul Kalanithi",
+      "cover": "https://m.media-amazon.com/images/I/91iZ2ZQduBL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Steve Jobs",
+      "author": "Walter Isaacson",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg"
+    },
+    {
+      "title": "zakaria ",
+      "author": "lkelb",
+      "description": "kdg,ksdg",
+      "cover": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781787550360/classic-book-cover-foiled-journal-9781787550360_hr.jpg",
+      "id": 1721208681537
+    }
+  ],
+  "Travel": [
+    {
+      "id": 1,
+      "title": "Into the Wild",
+      "author": "Jon Krakauer",
+      "cover": "https://c8.alamy.com/comp/2H0R31R/book-cover-into-the-wild-by-jon-krakauer-2H0R31R.jpg"
+    },
+    {
+      "id": 2,
+      "title": "A Walk in the Woods",
+      "author": "Bill Bryson",
+      "cover": "https://m.media-amazon.com/images/I/51avHY1QAfL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "The Geography of Bliss",
+      "author": "Eric Weiner",
+      "cover": "https://m.media-amazon.com/images/I/71aH0E84VpL._AC_UF894,1000_QL80_.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Vagabonding",
+      "author": "Rolf Potts",
+      "cover": "https://rolfpotts.com/wp-content/uploads/2022/05/VagabondsWay.jpg"
+    },
+    {
+      "id": 5,
+      "title": "In Patagonia",
+      "author": "Bruce Chatwin",
+      "cover": "https://m.media-amazon.com/images/I/7180QwdgUKL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 6,
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "cover": "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg"
+    }
+  ],
+  "Health": [
+    {
+      "id": 1,
+      "title": "How Not to Die",
+      "author": "Michael Greger",
+      "cover": "https://m.media-amazon.com/images/I/81RvGjUWqlL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 2,
+      "title": "The Blue Zones Solution",
+      "author": "Dan Buettner",
+      "cover": "https://m.media-amazon.com/images/I/71k5-zrvlHL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "The Whole30",
+      "author": "Melissa Hartwig Urban",
+      "cover": "https://m.media-amazon.com/images/I/819XBiSObYL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 4,
+      "title": "The Plant Paradox",
+      "author": "Steven R. Gundry",
+      "cover": "https://m.media-amazon.com/images/I/812gRUpG4PL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Why We Sleep",
+      "author": "Matthew Walker",
+      "cover": "https://booksondemand.ma/cdn/shop/products/whywesleep.jpg?v=1609500813"
+    },
+    {
+      "id": 6,
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "cover": "https://booksondemand.ma/cdn/shop/products/Atomichabits-min.jpg?v=1631701304"
+    }
+  ],
+  "Poetry": [
+    {
+      "id": 1,
+      "title": "Milk and Honey",
+      "author": "Rupi Kaur",
+      "cover": "https://images.gr-assets.com/books/1491595510l/23513349.jpg"
+    },
+    {
+      "id": 2,
+      "title": "The Sun and Her Flowers",
+      "author": "Rupi Kaur",
+      "cover": "https://booksondemand.ma/cdn/shop/products/41H7E-gBdvL-min.jpg?v=1631701542"
+    },
+    {
+      "id": 3,
+      "title": "Ariel",
+      "author": "Sylvia Plath",
+      "cover": "https://m.media-amazon.com/images/I/61H-14EGZQL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Leaves of Grass",
+      "author": "Walt Whitman",
+      "cover": "https://m.media-amazon.com/images/I/81TR5FC0OmS._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 5,
+      "title": "The Waste Land",
+      "author": "T.S. Eliot",
+      "cover": "https://m.media-amazon.com/images/I/61r93iIsfNL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Selected Poems",
+      "author": "Emily Dickinson",
+      "cover": "https://m.media-amazon.com/images/I/91DQkA5ZfBL._AC_UF1000,1000_QL80_.jpg"
+    }
+  ],
+  "Cooking": [
+    {
+      "id": 1,
+      "title": "The Joy of Cooking",
+      "author": "Irma S. Rombauer",
+      "cover": "https://m.media-amazon.com/images/I/71E38BP7AlL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Salt, Fat, Acid, Heat",
+      "author": "Samin Nosrat",
+      "cover": "https://m.media-amazon.com/images/I/718Qpw4miiL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "The Food Lab",
+      "author": "J. Kenji López-Alt",
+      "cover": "https://m.media-amazon.com/images/I/515afUMn3aL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Mastering the Art of French Cooking",
+      "author": "Julia Child",
+      "cover": "https://m.media-amazon.com/images/I/61f1m7ySZQL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Plenty",
+      "author": "Yotam Ottolenghi",
+      "cover": "https://m.media-amazon.com/images/I/61Uv2Hf1hnL.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Essentials of Classic Italian Cooking",
+      "author": "Marcella Hazan",
+      "cover": "https://m.media-amazon.com/images/I/81Ewllf1UnL._AC_UF1000,1000_QL80_.jpg"
+    }
+  ]
+}
