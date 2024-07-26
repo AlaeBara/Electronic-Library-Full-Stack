@@ -66,9 +66,9 @@ router.post('/:category', authMiddleware,async (req, res) => {
 
 
 // Delete a book
-router.delete('/categories/:category/:id', async (req, res) => {
+router.delete('/books/:id', async (req, res) => {
   try {
-    const deletedBook = await Book.findOneAndDelete({ category: req.params.category, _id: req.params.id });
+    const deletedBook = await Book.findOneAndDelete({_id: req.params.id });
     if (deletedBook) {
       res.json({ message: 'Book deleted', book: deletedBook });
     } else {
@@ -94,5 +94,16 @@ router.get('/search', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+router.get('/user-books', authMiddleware, async (req, res) => {
+  try {
+    const books = await Book.find({ id_client: req.user.id });
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
 
 module.exports = router;
