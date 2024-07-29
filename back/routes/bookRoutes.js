@@ -29,7 +29,7 @@ router.get('/books', async (req, res) => {
 });
 
 // Get a single book by category and id
-router.get('/categories/:category/:id', async (req, res) => {
+router.get('/:category/:id', async (req, res) => {
   try {
     const book = await Book.findOne({ category: req.params.category, _id: req.params.id });
     if (book) {
@@ -45,7 +45,7 @@ router.get('/categories/:category/:id', async (req, res) => {
 
 
 // Add a new book
-router.post('/:category', authMiddleware,async (req, res) => {
+router.post('/addbook', authMiddleware,async (req, res) => {
   const book = new Book({
     id_client:req.user.id,
     title: req.body.title,

@@ -34,7 +34,7 @@ const OneBook = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/categories/${category}/${bookId}`);
+        const response = await fetch(`http://localhost:5000/api/${category}/${bookId}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
