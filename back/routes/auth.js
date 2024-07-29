@@ -55,7 +55,7 @@ router.post('/signin', async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1w' });
 
         res.cookie('token', token, { httpOnly: true });
 
@@ -81,18 +81,18 @@ const authMiddleware = (req, res, next) => {
 };
 
 router.get('/profile', authMiddleware, async (req, res) => {
-try {
-    const user = await User.findById(req.user.id).select('-password');
-    if (!user) {
-    return res.status(404).json({ msg: 'User not found' });
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        if (!user) {
+        return res.status(404).json({ msg: 'User not found' });
+        }
+        res.json(user);
+    } catch (err) {
+        console.error('Profile fetch error:', err);
+        res.status(500).json({ message: 'Server Error', error: err.message });
     }
-    res.json(user);
-} catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-}
-});
-
+    });
+    
 router.put('/profile', authMiddleware, async (req, res) => {
 const { username, phone, address, country, profileImage } = req.body;
 

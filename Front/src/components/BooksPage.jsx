@@ -40,7 +40,7 @@ const BooksPage = () => {
       <h1 className="text-center mb-5" style={{ color: '#333', fontWeight: 'bold' }}>
         Our Book Collection
       </h1>
-      <Row xs={1} sm={2} md={3} lg={4} xl={5} className="g-4 mx-5">
+      <Row xs={1} sm={2} md={3} lg={4} xl={6} className="g-4 mx-5">
         {books.map((book) => (
           <Col key={book._id}>
             <BookCard category={book.category} book={book} />

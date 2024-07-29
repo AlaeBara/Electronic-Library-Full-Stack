@@ -4,6 +4,15 @@ import { useParams } from 'react-router-dom';
 import '../assets/css/bookbtn.css'
 
 const OneBook = () => {
+  const openPdf = () => {
+    if (book.pdfUrl) {
+      window.open(book.pdfUrl, '_blank');
+    } else {
+      alert('PDF not available for this book.');
+    }
+    handleCloseModal();
+  };
+  
   const { category, bookId } = useParams();
   const [isImageLarge, setIsImageLarge] = useState(false);
   const [book, setBook] = useState(null);
@@ -93,15 +102,15 @@ const OneBook = () => {
 
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>salam 1</Modal.Title>
+          <Modal.Title>Open The Book</Modal.Title>
         </Modal.Header>
-        <Modal.Body>salam salam"{book.title}"?</Modal.Body>
+        <Modal.Body>Click Yes To View "{book.title}" Content</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             Cancel
           </Button>
-          <Button variant="success">
-            Read Book
+          <Button variant="success" onClick={openPdf}>
+            YES
           </Button>
         </Modal.Footer>
       </Modal>

@@ -11,7 +11,8 @@ const Favorites = () => {
   }, []);
 
   const removeFavorite = (bookId) => {
-    const updatedFavorites = favorites.filter(book => book.id !== bookId);
+    const updatedFavorites = favorites.filter(book => book._id !== bookId);
+    console.log('Updated favorites:', updatedFavorites);
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
@@ -31,7 +32,7 @@ const Favorites = () => {
                 <BookCard category={book.category} book={book} />
                 <button
                   className="btn btn-danger position-absolute top-0 end-0 m-2"
-                  onClick={() => removeFavorite(book.id)}
+                  onClick={() => removeFavorite(book._id)}
                 >
                   Remove
                 </button>

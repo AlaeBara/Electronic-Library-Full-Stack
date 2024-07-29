@@ -15,8 +15,7 @@ const CustomNavbar = () => {
     e.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
-    } else {
-      navigate('/allbooks');
+      setSearchTerm(''); // Clear the search input after searching
     }
   };
 
@@ -64,6 +63,7 @@ const CustomNavbar = () => {
               <>
                 <Nav.Link as={Link} to="/favorites" className="navbar-link-custom">Favorite</Nav.Link>
                 <Nav.Link as={Link} to="/addbook" className="navbar-link-custom">Add Book</Nav.Link>
+                <Nav.Link as={Link} to="/profile" className="navbar-link-custom">Profile</Nav.Link>
                 <Nav.Link onClick={handleLogout} className="logina navbar-link-custom px-3">Logout</Nav.Link>
               </>
             ) : (

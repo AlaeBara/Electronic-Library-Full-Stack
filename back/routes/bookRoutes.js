@@ -52,7 +52,8 @@ router.post('/:category', authMiddleware,async (req, res) => {
     author: req.body.author,
     description: req.body.description,
     cover: req.body.cover,
-    category: req.body.category
+    category: req.body.category,
+    pdfUrl: req.body.pdfUrl
   });
 
   try {
@@ -66,9 +67,9 @@ router.post('/:category', authMiddleware,async (req, res) => {
 
 
 // Delete a book
-router.delete('/categories/:category/:id', async (req, res) => {
+router.delete('/books/:id', async (req, res) => {
   try {
-    const deletedBook = await Book.findOneAndDelete({ category: req.params.category, _id: req.params.id });
+    const deletedBook = await Book.findOneAndDelete({_id: req.params.id });
     if (deletedBook) {
       res.json({ message: 'Book deleted', book: deletedBook });
     } else {
@@ -79,4 +80,31 @@ router.delete('/categories/:category/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+router.get('/search', async (req, res) => {
+  const { q } = req.query;
+  try {
+    const books = await Book.find({
+      $or: [
+        { title: { $regex: q, $options: 'i' } },
+        { author: { $regex: q, $options: 'i' } },
+        { description: { $regex: q, $options: 'i' } }
+      ]
+    });
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get('/user-books', authMiddleware, async (req, res) => {
+  try {
+    const books = await Book.find({ id_client: req.user.id });
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+
+module.exports = router;  

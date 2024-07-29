@@ -33,7 +33,11 @@ const bookSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  pdfUrl: {
+    type: String,
+    trim: true
+  },
 });
 
 module.exports = mongoose.model('Book', bookSchema);

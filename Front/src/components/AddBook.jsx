@@ -15,18 +15,32 @@ const AddBook = () => {
   const [bookDescription, setBookDescription] = useState("");
   const [category, setCategory] = useState("");
   const fileInputRef = useRef(null); // Create a ref for the file input
+  const [bookPdf, setBookPdf] = useState(null);
+
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'y1f5bwss');
-
     try {
-      const res = await axios.post('https://api.cloudinary.com/v1_1/djux9krem/image/upload', formData);
+      const res = await axios.post('https://api.cloudinary.com/v1_1/djux9krem/image/upload', formData);      
       setBookImage(res.data.secure_url);
     } catch (err) {
       console.error('Error uploading image: ', err);
+    }
+  };
+
+  const handlePdfUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'pdf_uploads');
+    try {
+      const res = await axios.post('https://api.cloudinary.com/v1_1/djux9krem/raw/upload', formData);
+      setBookPdf(res.data.secure_url);
+    } catch (err) {
+      console.error('Error uploading PDF: ', err);
     }
   };
 
@@ -39,9 +53,9 @@ const AddBook = () => {
         author: bookAuthor,
         description: bookDescription,
         cover: bookImage,
-        category: category
+        category: category,
+        pdfUrl: bookPdf
       };
-  
       const response = await fetch(`http://localhost:5000/api/${category}`, {
         method: "POST",
         headers: {
@@ -95,6 +109,14 @@ const AddBook = () => {
             value={bookName}
             onChange={(e) => setBookName(e.target.value)} 
             required 
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBookPdf">
+        <Form.Label>Book PDF</Form.Label>
+          <Form.Control 
+            type="file" 
+            onChange={handlePdfUpload} 
+            accept=".pdf"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBookAuthor">
