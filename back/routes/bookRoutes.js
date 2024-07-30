@@ -1,21 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/Book');
-const jwt = require('jsonwebtoken');
-
-
-const authMiddleware = (req, res, next) => {
-  const token = req.cookies.token;
-  if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
-  
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(403).json({ msg: 'Token is not valid' });
-  }
-};
+const {jwtMiddleware} = require('../middelware/jwt');
 
 
 // Get all books
@@ -45,7 +31,7 @@ router.get('/:category/:id', async (req, res) => {
 
 
 // Add a new book
-router.post('/addbook', authMiddleware,async (req, res) => {
+router.post('/addbook', jwtMiddleware,async (req, res) => {
   const book = new Book({
     id_client:req.user.id,
     title: req.body.title,
@@ -96,7 +82,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
-router.get('/user-books', authMiddleware, async (req, res) => {
+router.get('/user-books', jwtMiddleware, async (req, res) => {
   try {
     const books = await Book.find({ id_client: req.user.id });
     res.json(books);

@@ -1,25 +1,30 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const cloudinary = require('cloudinary').v2
 const router = express.Router();
-const cloudinary = require('cloudinary').v2;
+
+
+const {jwtMiddleware} = require('../middelware/jwt');
+const User = require('../models/User');
+const Admin = require('../models/Admin');
+
 
 
 cloudinary.config({ 
     cloud_name: 'djux9krem', 
     api_key: '639144162891629', 
     api_secret: 'cqldqET6lDIs4iM9WAkf5DV4Adg' 
-  });
+});
   
-  router.get('/signature', (req, res) => {
+router.get('/signature', (req, res) => {
     const timestamp = Math.round((new Date).getTime()/1000);
     const signature = cloudinary.utils.api_sign_request({
       timestamp: timestamp,
       folder: 'user_uploads'
     }, cloudinary.config().api_secret);
     res.json({ timestamp, signature });
-  });
+});
 
 
 router.post('/signup', async (req, res) => {
@@ -45,7 +50,14 @@ router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        let user = await Admin.findOne({ email });
+        let isAdmin = true;
+
+        if (!user) {
+            user = await User.findOne({ email });
+            isAdmin = false;
+        }
+
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
@@ -55,11 +67,19 @@ router.post('/signin', async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1w' });
+        const token = jwt.sign(
+            { id: user._id, role: isAdmin ? 'admin' : 'user' },
+            process.env.JWT_SECRET,
+            { expiresIn: '1w' }
+        );
 
         res.cookie('token', token, { httpOnly: true });
 
-        res.status(200).json({ message: 'User signed in successfully' ,token:token});
+        res.status(200).json({
+            message: `${isAdmin ? 'Admin' : 'User'} signed in successfully`,
+            token: token,
+            role: isAdmin ? 'admin' : 'user'
+        });
     } catch (error) {
         console.error('Signin error:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
@@ -67,20 +87,7 @@ router.post('/signin', async (req, res) => {
 });
 
 
-const authMiddleware = (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json({ msg: 'No token, authorization denied' });
-    
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = decoded;
-      next();
-    } catch (err) {
-      res.status(401).json({ msg: 'Token is not valid' });
-    }
-};
-
-router.get('/profile', authMiddleware, async (req, res) => {
+router.get('/profile', jwtMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
         if (!user) {
@@ -91,9 +98,12 @@ router.get('/profile', authMiddleware, async (req, res) => {
         console.error('Profile fetch error:', err);
         res.status(500).json({ message: 'Server Error', error: err.message });
     }
-    });
+});
+
+
+
     
-router.put('/profile', authMiddleware, async (req, res) => {
+router.put('/profile', jwtMiddleware, async (req, res) => {
 const { username, phone, address, country, profileImage } = req.body;
 
 try {
@@ -121,5 +131,19 @@ router.get('/logout', (req, res) => {
     res.clearCookie('token');
     res.status(200).json({ message: 'Logged out successfully' });
 });
+
+
+router.post('/check_authenticateToken',jwtMiddleware, (req, res) => {
+    res.sendStatus(200);
+});
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

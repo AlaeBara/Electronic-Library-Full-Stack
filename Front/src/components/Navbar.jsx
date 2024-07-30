@@ -1,34 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import '../assets/css/navbar.css';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/images/logowa.png';
-import { AuthContext } from '../AuthContext';
-import axios from 'axios'
+import axios from 'axios';
 
-const CustomNavbar = () => {
+const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
-      setSearchTerm(''); // Clear the search input after searching
+      setSearchTerm('');
     }
   };
 
-  const handleLogout = async() => {
-        try {
-          await axios.get('http://localhost:5000/api/auth/logout',{withCredentials:true});
-          setIsLoggedIn(false);
-          localStorage.removeItem('token');
-          navigate('/'); 
-        } catch (error) {
-          console.error('Logout failed:', error);
-          alert("Logout failed");
-        }
+  const handleLogout = async () => {
+    try {
+      await axios.get('http://localhost:5000/api/auth/logout', { withCredentials: true });
+      setIsLoggedIn(false);
+      navigate('/');
+    } catch (error) {
+      console.error('Logout failed:', error);
+      alert("Logout failed");
+    }
   };
 
   return (
