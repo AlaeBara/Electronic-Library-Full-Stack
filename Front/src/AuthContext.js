@@ -1,19 +1,32 @@
-import React, { createContext, useState, useEffect } from 'react';
+// src/AuthContext.js
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 
-export const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const checkAuthStatus = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/check_authenticateToken', {}, {
+        withCredentials: true
+      });
+      setIsLoggedIn(response.status === 200);
+    } catch (error) {
+      console.error('Error checking auth status:', error);
+    }
+  };
+
   useEffect(() => {
-    // Check if user is logged in (e.g., by checking for a token in localStorage)
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
+    checkAuthStatus();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, checkAuthStatus }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
