@@ -12,13 +12,10 @@ function SummaryCards() {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const [booksResponse, usersResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/books'),
-          axios.get('http://localhost:5000/api/auth/users', { withCredentials: true })
-        ]);
+        const response = await axios.get('http://localhost:5000/api/admin//summary', { withCredentials: true });
         setSummary({
-          totalBooks: booksResponse.data.length,
-          totalUsers: usersResponse.data.length,
+          totalBooks: response.data.totalBooks,
+          totalUsers: response.data.totalUsers,
         });
       } catch (error) {
         console.error('Error fetching summary data:', error);
