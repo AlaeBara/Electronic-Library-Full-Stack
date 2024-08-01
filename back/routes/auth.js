@@ -3,11 +3,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary').v2
 const router = express.Router();
-
-
 const {jwtMiddleware} = require('../middelware/jwt');
 const User = require('../models/User');
 
+
+// intergration with cloudinary
 cloudinary.config({ 
     cloud_name: 'djux9krem', 
     api_key: '639144162891629', 
@@ -23,7 +23,7 @@ router.get('/signature', (req, res) => {
     res.json({ timestamp, signature });
 });
 
-
+// sign up
 router.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -43,7 +43,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-
+// sign in
 router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
@@ -78,7 +78,7 @@ router.post('/signin', async (req, res) => {
     }
 });
 
-
+// getting the profile
 router.get('/profile', jwtMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
@@ -92,9 +92,7 @@ router.get('/profile', jwtMiddleware, async (req, res) => {
     }
 });
 
-
-
-    
+// editing the profile
 router.put('/profile', jwtMiddleware, async (req, res) => {
 const { username, phone, address, country, profileImage } = req.body;
 
@@ -118,13 +116,13 @@ try {
 }
 });
 
-
+// logging out
 router.get('/logout', (req, res) => {
     res.clearCookie('token');
     res.status(200).json({ message: 'Logged out successfully' });
 });
 
-
+// checks if u are authenticated
 router.post('/check_authenticateToken', jwtMiddleware, async (req, res) => {
     try {
       const user = await User.findById(req.user.id).select('-password');
