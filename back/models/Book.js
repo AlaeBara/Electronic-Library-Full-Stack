@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// book table
 const bookSchema = new mongoose.Schema({
   id_client: {
     type: String,
