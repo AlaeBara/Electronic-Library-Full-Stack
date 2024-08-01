@@ -1,6 +1,6 @@
 # 📚 Electronic-Library
 
-A web application for managing books and user profiles with authentication and admin functionalities.
+web application for publishing and reading books online and managing user profiles with authentication and admin functionalities.
 
 ## 🎨 Layout
 ![Screenshot_1](https://github.com/user-attachments/assets/1a560846-7354-4d39-8bc1-7e2543f9d273)
