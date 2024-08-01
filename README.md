@@ -1,13 +1,6 @@
-Sure, here's a simplified README for your project:
-
----
-
-# 📚 Library Management System
+# 📚 Electronic-Library
 
 A web application for managing books and user profiles with authentication and admin functionalities.
-
-## 📺 Demo Video
-Watch the demo video
 
 ## 🎨 Layout
 ![Screenshot_1](https://github.com/user-attachments/assets/1a560846-7354-4d39-8bc1-7e2543f9d273)
@@ -80,18 +73,12 @@ Watch the demo video
 - Admin dashboard
 - Responsive and user-friendly interface
 
-## 📫 Contribute
-Thank you for your interest in contributing to this project. At this time, we are not accepting external contributions. However, we appreciate your enthusiasm and encourage you to use the project, provide feedback, and share your thoughts.
-
 ## 📄 Documentation
 - [Express.js Documentation](https://expressjs.com/)
 - [Mongoose Documentation](https://mongoosejs.com/)
 - [React.js Documentation](https://reactjs.org/)
 - [Cloudinary Documentation](https://cloudinary.com/documentation)
 
-## Authors
+## 📫 Authors
 - Abdennacer kaddouri
 - Alaeddine Bara
-
-
-Feel free to replace the placeholders and links with actual content relevant to your project.
