@@ -14,9 +14,17 @@ import Favorites from './components/favorites'
 import Profile from './components/Profile'
 import Sign from './components/Sign/Sign'
 import ProtectedRoute from './ProtectedRoute';
-import { AuthProvider } from './AuthContext'; // Import the AuthProvider
+import Dashboard from './components/admin/Dashboard';
+import { AuthProvider, useAuth } from './AuthContext';
+import AdminRoute from './AdminRoute';
 
-const App = () => {
+const AppContent = () => {
+  const { isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or any loading indicator
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
@@ -29,6 +37,9 @@ const App = () => {
         <Route path='/login' element={<Sign />} />
         <Route path='/aboutus' element={<AboutUs />} />
 
+        {/* routes admin */}
+        <Route path='/admin' element={<AdminRoute><Dashboard /></AdminRoute>} />
+
         {/* routes client */}
         <Route path='/addbook' element={<ProtectedRoute><AddBook /></ProtectedRoute>} />
         <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
@@ -37,9 +48,13 @@ const App = () => {
     )
   );
 
+  return <RouterProvider router={router} />;
+};
+
+const App = () => {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <AppContent />
     </AuthProvider>
   );
 };
