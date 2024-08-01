@@ -66,6 +66,7 @@ router.delete('/books/:id', async (req, res) => {
   }
 });
 
+// seach bar
 router.get('/search', async (req, res) => {
   const { q } = req.query;
   try {
@@ -82,6 +83,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
+// fetshing exact user book for shing them in profile
 router.get('/user-books', jwtMiddleware, async (req, res) => {
   try {
     const books = await Book.find({ id_client: req.user.id });
