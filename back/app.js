@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const adminRoutes = require('./routes/adminRoutes');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');  // Add this line
@@ -24,9 +25,9 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
-// Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api', require('./routes/bookRoutes'));
+app.use('/api/admin', adminRoutes);
 
 
 const PORT = process.env.PORT || 5000;

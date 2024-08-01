@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import styles from '../Sign.module.css';
@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../../AuthContext';
 
 const SignInForm = () => {
-
-  const { setIsLoggedIn } = useAuth();
-
+  const { checkAuthStatus } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -20,17 +18,16 @@ const SignInForm = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signin', formData, { withCredentials: true });
       setMessage(response.data.message);
-      setIsLoggedIn(true);
+      await checkAuthStatus(); // Re-check auth status after login
       // Navigate based on the user role
       if (response.data.role === 'admin') {
-        navigate("/admin-dashboard");
+        navigate("/admin");
       } else {
         navigate("/profile");
       }

@@ -7,9 +7,6 @@ const router = express.Router();
 
 const {jwtMiddleware} = require('../middelware/jwt');
 const User = require('../models/User');
-const Admin = require('../models/Admin');
-
-
 
 cloudinary.config({ 
     cloud_name: 'djux9krem', 
@@ -46,17 +43,12 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+
 router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        let user = await Admin.findOne({ email });
-        let isAdmin = true;
-
-        if (!user) {
-            user = await User.findOne({ email });
-            isAdmin = false;
-        }
+        const user = await User.findOne({ email });
 
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
@@ -68,7 +60,7 @@ router.post('/signin', async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user._id, role: isAdmin ? 'admin' : 'user' },
+            { id: user._id, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '1w' }
         );
@@ -76,9 +68,9 @@ router.post('/signin', async (req, res) => {
         res.cookie('token', token, { httpOnly: true });
 
         res.status(200).json({
-            message: `${isAdmin ? 'Admin' : 'User'} signed in successfully`,
+            message: `${user.role === 'admin' ? 'Admin' : 'User'} signed in successfully`,
             token: token,
-            role: isAdmin ? 'admin' : 'user'
+            role: user.role
         });
     } catch (error) {
         console.error('Signin error:', error);
@@ -133,17 +125,13 @@ router.get('/logout', (req, res) => {
 });
 
 
-router.post('/check_authenticateToken',jwtMiddleware, (req, res) => {
-    res.sendStatus(200);
-});
-
-
-
-
-
-
-
-
-
+router.post('/check_authenticateToken', jwtMiddleware, async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+      res.status(200).json({ user });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
 
 module.exports = router;
