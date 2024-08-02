@@ -4,7 +4,7 @@ const User = require('../models/User');
 const Book = require('../models/Book');
 const { jwtMiddleware } = require('../middelware/jwt');
 
-// nothing is working here atm
+
 // Middleware to check if user is admin
 const isAdmin = (req, res, next) => {
   if (req.user && req.user.role === 'admin') {
