@@ -1,0 +1,149 @@
+/* profile.css */
+.profile-section {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.upload-button {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.profile-edit-btn {
+    transition: all 0.3s ease;
+}
+
+.profile-edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-form .form-control {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.profile-form .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.25);
+    border-color: #E74C3C;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    background-color: #f1f3f5;
+    transform: translateX(4px);
+}
+
+.book-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+}
+
+.book-cover {
+    height: 200px;
+    object-fit: cover;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.book-card:hover .delete-btn {
+    opacity: 1;
+}
+
+.view-details-btn {
+    width: 100%;
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+    transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.25);
+}
+
+.delete-modal .modal-content {
+    border-radius: 16px;
+    border: none;
+}
+
+.submit-btn {
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.25);
+}

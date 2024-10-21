@@ -5,7 +5,7 @@ import logo from '../assets/images/logowa.png';
 import axios from 'axios';
 import '../assets/css/navbar.css';
 
-const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
+const CustomNavbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 

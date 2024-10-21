@@ -16,7 +16,6 @@
     background-color: #11b442;
     border-color: #10d84c;
     width: 100%;
-    margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -24,3 +23,49 @@
     background-color: #E74C3C;
     border-color: #E74C3C;
 }
+/* bookbtn.css */
+.hover-zoom:hover {
+    transform: scale(1.02);
+  }
+  
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 8px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  .click-to-zoom {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .book-modal .modal-content {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .read-book-btn:hover,
+  .add-to-favorites-btn:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .badge {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .image-overlay-container img {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
