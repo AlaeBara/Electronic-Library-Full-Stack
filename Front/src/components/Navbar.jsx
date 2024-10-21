@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
-import '../assets/css/navbar.css';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/images/logowa.png';
 import axios from 'axios';
+import '../assets/css/navbar.css';
 
 const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +24,7 @@ const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
       navigate('/');
     } catch (error) {
       console.error('Logout failed:', error);
-      alert("Logout failed");
+      alert('Logout failed');
     }
   };
 
@@ -32,19 +32,15 @@ const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
     <Navbar expand="lg" className="sticky-top navbar-custom">
       <Container fluid>
         <Navbar.Brand as={Link} to="/" className="navbar-brand-custom">
-          <img
-            src={logo}
-            alt="Logo"
-            className="d-inline-block align-top navbar-logo"
-          />
+          <img src={logo} alt="Logo" className="navbar-logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <div className="lmochkila navbar-center">
-            <Form className="d-flex search-form" onSubmit={handleSearch}>
+          <Nav className="mx-auto">
+            <Form className="search-form" onSubmit={handleSearch}>
               <FormControl
                 type="search"
-                placeholder="Search Anything...."
+                placeholder="Search Anything..."
                 className="search-input"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -54,7 +50,7 @@ const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
                 <i className="fas fa-search"></i> Search
               </Button>
             </Form>
-          </div>
+          </Nav>
           <Nav>
             {isLoggedIn ? (
               <>
@@ -71,6 +67,6 @@ const CustomNavbar = ({ isLoggedIn, setIsLoggedIn, checkAuthStatus }) => {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default CustomNavbar;
