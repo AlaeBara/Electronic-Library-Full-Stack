@@ -36,9 +36,9 @@ const BooksPage = () => {
   }
 
   return (
-    <Container fluid className="py-5">
-      <h1 className="text-center mb-5" style={{ color: '#333', fontWeight: 'bold' }}>
-        Our Book Collection
+    <Container fluid className="py-4">
+      <h1 className="text-center mb-4" style={{ color: '#333', fontWeight: 'bold' }}>
+        Available Books
       </h1>
       <Row xs={1} sm={2} md={3} lg={4} xl={6} className="g-4 mx-5">
         {books.map((book) => (

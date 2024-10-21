@@ -12,7 +12,7 @@ const BookCard = ({ book }) => {
   return (
     <Card
       className={`h-100 shadow-sm ${isClicked ? 'clicked' : ''}`}
-      style={{ transition: 'transform 0.3s ease', transform: isClicked ? 'scale(1.15)' : 'scale(1)' }}
+      style={{ transition: 'transform 0.3s ease', transform: isClicked ? 'scale(1.05)' : 'scale(1)' }}
       onClick={handleClick}
     >
       <Card.Img
@@ -27,7 +27,23 @@ const BookCard = ({ book }) => {
         <Link
           to={`/allbooks/${book.category}/${book._id}`}
           className="btn btn-primary mt-3"
-          style={{ backgroundColor: '#E74C3C', borderColor: '#E74C3C' }}
+          style={{
+            backgroundColor: '#E74C3C',
+            borderColor: '#E74C3C',
+            transition: 'all 0.3s ease',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#C0392B';
+            e.currentTarget.style.borderColor = '#C0392B';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = '#E74C3C';
+            e.currentTarget.style.borderColor = '#E74C3C';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
         >
           View Details
         </Link>
