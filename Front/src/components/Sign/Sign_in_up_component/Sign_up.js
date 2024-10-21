@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import styles from '../Sign.module.css';
 import axios from 'axios';
+import { User , LockKeyhole , Mail} from 'lucide-react';
 
 const SignUpForm = ({onSignUpSuccess}) => {
   const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const SignUpForm = ({onSignUpSuccess}) => {
 
       <div className={styles['input-field']}>
         <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
+          <User  />
         </div>
         <input 
           type="text" 
@@ -56,7 +57,7 @@ const SignUpForm = ({onSignUpSuccess}) => {
     
       <div className={styles['input-field']}>
         <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
+          <Mail />
         </div>
         <input 
           type="email" 
@@ -70,7 +71,7 @@ const SignUpForm = ({onSignUpSuccess}) => {
 
       <div className={styles['input-field']}>
         <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
+          <LockKeyhole />
         </div>
         <input 
           type="password" 
