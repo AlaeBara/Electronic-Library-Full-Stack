@@ -5,6 +5,7 @@ import styles from '../Sign.module.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../../AuthContext';
+import { User , LockKeyhole} from 'lucide-react';
 
 const SignInForm = () => {
   const { checkAuthStatus } = useAuth();
@@ -42,7 +43,7 @@ const SignInForm = () => {
       
       <div className={styles['input-field']}>
         <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
+          <User/>
         </div>
         <input 
           type="email" 
@@ -55,7 +56,7 @@ const SignInForm = () => {
       </div>
       <div className={styles['input-field']}>
         <div className={styles['ccc']}>
-          <FontAwesomeIcon icon={faTwitter} />
+          <LockKeyhole/>
         </div>
         <input 
           type="password" 
